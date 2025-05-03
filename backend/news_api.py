@@ -5,7 +5,7 @@ from extract_news import extract_news_details
 import requests
 
 app = Flask(__name__)
-CORS(app, resources={r"/api/*": {"origins": "*"}})
+CORS(app, resources={r"/api/*": {"origins": "https://gonewspigeon.netlify.app"}})
 
 def fetch_and_save_news(page):
     url = "https://www.thedailystar.net/views/ajax"
