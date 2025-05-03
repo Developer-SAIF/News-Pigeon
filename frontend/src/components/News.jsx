@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import NewsItem from "./NewsItem";
 import Loading from "./Loading";
 import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+
 
 export class News extends Component {
   constructor() {
@@ -47,22 +51,22 @@ export class News extends Component {
 
   render() {
     return (
-      <div className="container my-3">
+      <Container className="my-3">
         <h2>News Pigeon - Top headlines</h2>
-        <div className="row">
+        <Row className="row">
           {this.state.articles.map((element) => {
             return (
-              <div className="col-md-4" key={element.news_url}>
+              <Col className="col-md-4" key={element.news_url}>
                 <NewsItem
                   title={element.headline}
                   description={element.description}
                   imageUrl={element.image_url}
                   newsUrl={element.news_url}
                 />
-              </div>
+              </Col>
             );
           })}
-        </div>
+        </Row>
         <Loading isLoading={this.state.loading} />
         <div className="my-3 container d-flex justify-content-between">
           <Button
@@ -79,7 +83,7 @@ export class News extends Component {
             Next &rArr;
           </Button>
         </div>
-      </div>
+      </Container>
     );
   }
 }
