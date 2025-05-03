@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://<your-render-backend-url>", // Replace with Render's backend URL
+        target: "https://news-pigeon.onrender.com",
         changeOrigin: true,
         secure: true,
       },
