@@ -16,10 +16,8 @@ export class News extends Component {
   fetchNews = (page = 1) => {
     this.setState({ loading: true });
 
-    fetch(`/api/update-news?page=${page}`)
-      .then((res) => {
-        return res.json();
-      })
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/update-news?page=${page}`)
+      .then((res) => res.json())
       .then((data) => {
         this.setState({
           articles: data,
@@ -65,7 +63,7 @@ export class News extends Component {
             );
           })}
         </div>
-        <Loading isLoading={this.state.loading}/>
+        <Loading isLoading={this.state.loading} />
         <div className="my-3 container d-flex justify-content-between">
           <Button
             variant="success"
