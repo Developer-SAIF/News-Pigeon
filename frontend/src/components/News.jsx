@@ -8,16 +8,18 @@ import Col from "react-bootstrap/Col";
 
 
 export class News extends Component {
+  initialPage = 1;
+
   constructor() {
     super();
     this.state = {
       articles: [],
       loading: false,
-      page: 1,
+      page: this.initialPage,
     };
   }
 
-  fetchNews = (page = 1) => {
+  fetchNews = (page = this.initialPage) => {
     this.setState({ loading: true });
 
     fetch(`${import.meta.env.VITE_API_BASE_URL}/api/update-news?page=${page}`)
@@ -36,7 +38,7 @@ export class News extends Component {
   };
 
   componentDidMount() {
-    this.fetchNews(1);
+    this.fetchNews(this.initialPage);
   }
 
   handleNextClick = () => {
@@ -45,7 +47,7 @@ export class News extends Component {
   };
 
   handlePrevClick = () => {
-    const prevPage = this.state.page > 1 ? this.state.page - 1 : 1;
+    const prevPage = this.state.page > this.initialPage ? this.state.page - 1 : this.initialPage;
     this.fetchNews(prevPage);
   };
 
@@ -72,7 +74,7 @@ export class News extends Component {
           <Button
             variant="success"
             onClick={this.handlePrevClick}
-            disabled={this.state.page <= 1}
+            disabled={this.state.page <= this.initialPage}
           >
             &lArr; Previous
           </Button>
